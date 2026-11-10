@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leafly</title>
+  <link rel="stylesheet" href="../styles/themes.css">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <!-- Header -->
+    <header class="popup-header">
+      <div class="brand">
+        <img class="brand-icon" src="../assets/icons/icon-48.png" alt="Leafly" width="24" height="24">
+        <span class="brand-name">Leafly</span>
+      </div>
+
+      <!-- Master On/Off Switch -->
+      <label class="switch" title="Toggle Leafly effects">
+        <input type="checkbox" id="master-toggle" aria-label="Enable Leafly effects" checked>
+        <span class="slider"></span>
+      </label>
+    </header>
+
+    <!-- Live Preview Card -->
+    <div class="preview-card">
+      <canvas id="preview-canvas" width="310" height="96"></canvas>
+      <div class="preview-overlay">
+        <div class="preview-info">
+          <span class="preview-label" id="current-effect-title">Autumn Leaves</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Weather Information Card (Active in Auto mode or when available) -->
+    <div class="weather-card" id="weather-card">
+      <div class="weather-main">
+        <span class="weather-temp" id="weather-temp">--°C</span>
+        <div class="weather-details">
+          <span class="weather-condition" id="weather-condition">Checking weather...</span>
+          <span class="weather-location" id="weather-location">London</span>
+        </div>
+      </div>
+      <button class="icon-button" id="refresh-weather-btn" title="Refresh weather data" aria-label="Refresh weather data">
+        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="23 4 23 10 17 10"></polyline>
+          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mode Selector Tabs -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="manual" id="mode-manual-btn">Manual</button>
+      <button class="mode-tab" data-mode="auto" id="mode-auto-btn">Weather Sync</button>
+    </div>
+
+    <!-- Effect Picker (Active in Manual mode) -->
+    <div class="control-group" id="effect-select-group">
+      <label class="control-label" for="effect-select">Nature Effect</label>
+      <select class="select-input" id="effect-select">
+        <option value="autumn_leaves">Autumn Leaves</option>
+        <option value="snow">Gentle Snowfall</option>
+        <option value="rain">Gentle Rain</option>
+        <option value="spring_petals">Cherry Blossom Petals</option>
+        <option value="fireflies">Evening Fireflies</option>
+        <option value="sunbeams">Atmospheric Sunbeams</option>
+        <option value="bubbles">Drifting Bubbles</option>
+        <option value="stars">Starlight Drift</option>
+        <option value="confetti">Subtle Confetti</option>
+      </select>
+    </div>
+
+    <!-- Quick Range Sliders -->
+    <div class="sliders-section">
+      <div class="slider-row">
+        <div class="slider-header">
+          <span class="slider-title">Intensity</span>
+          <span class="slider-value" id="val-intensity">45</span>
+        </div>
+        <input type="range" class="range-slider" id="slider-intensity" min="1" max="100" value="45">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-header">
+          <span class="slider-title">Speed</span>
+          <span class="slider-value" id="val-speed">40</span>
+        </div>
+        <input type="range" class="range-slider" id="slider-speed" min="1" max="100" value="40">
+      </div>
+    </div>
+
+    <!-- Quick Features Row -->
+    <div class="quick-toggles">
+      <label class="toggle-pill" title="Enable particles settling along the bottom">
+        <input type="checkbox" id="toggle-accumulation" checked>
+        <span>Accumulate</span>
+      </label>
+
+      <button class="action-pill" id="btn-sweep-now" title="Test the broom sweep animation">
+        <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M18 4l-4 4M14 8l-8 8M6 16l-2 4 4-2M15 9l-3 3"></path>
+        </svg>
+        <span>Sweep</span>
+      </button>
+
+      <button class="action-pill" id="btn-toggle-site" title="Toggle Leafly for this specific website">
+        <span id="site-exclude-label">Exclude Site</span>
+      </button>
+    </div>
+
+    <!-- Footer Links -->
+    <footer class="popup-footer">
+      <button class="footer-link-btn" id="open-settings-btn">
+        <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="3"></circle>
+          <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+        </svg>
+        <span>Settings & Tuning</span>
+      </button>
+    </footer>
+
+    <div class="popup-crafted-by">
+      Crafted with <span class="heart-glyph">♥</span> by Innoartive Labs
+    </div>
+  </div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
+

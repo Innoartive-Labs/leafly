@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leafly Preferences</title>
+  <link rel="stylesheet" href="../styles/themes.css">
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-shell">
+    <!-- Sidebar Navigation -->
+    <aside class="settings-sidebar">
+      <div class="sidebar-brand">
+        <img class="brand-glyph" src="../assets/icons/icon-48.png" alt="Leafly" width="32" height="32">
+        <div class="brand-meta">
+          <div class="brand-title-row">
+            <span class="brand-title">Leafly</span>
+            <span class="brand-version-tag">v1.0.0</span>
+          </div>
+        </div>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Preferences Navigation">
+        <button type="button" class="nav-button active" data-tab="general">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="3"></circle>
+            <path d="M16.2 12.8a1.3 1.3 0 0 0 .3 1.5l.1.1a1.6 1.6 0 1 1-2.3 2.3l-.1-.1a1.3 1.3 0 0 0-1.5-.3 1.3 1.3 0 0 0-.8 1.2V18a1.6 1.6 0 1 1-3.2 0v-.5a1.3 1.3 0 0 0-.8-1.2 1.3 1.3 0 0 0-1.5.3l-.1.1a1.6 1.6 0 1 1-2.3-2.3l.1-.1a1.3 1.3 0 0 0 .3-1.5 1.3 1.3 0 0 0-1.2-.8H2a1.6 1.6 0 1 1 0-3.2h.5a1.3 1.3 0 0 0 1.2-.8 1.3 1.3 0 0 0-.3-1.5l-.1-.1a1.6 1.6 0 1 1 2.3-2.3l.1.1a1.3 1.3 0 0 0 1.5.3 1.3 1.3 0 0 0 .8-1.2V2a1.6 1.6 0 1 1 3.2 0v.5a1.3 1.3 0 0 0 .8 1.2 1.3 1.3 0 0 0 1.5-.3l.1-.1a1.6 1.6 0 1 1 2.3 2.3l-.1.1a1.3 1.3 0 0 0-.3 1.5 1.3 1.3 0 0 0 1.2.8h.5a1.6 1.6 0 1 1 0 3.2h-.5a1.3 1.3 0 0 0-1.2.8z"></path>
+          </svg>
+          <span>General</span>
+        </button>
+
+        <button type="button" class="nav-button" data-tab="weather">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.5 15.5H7.5a4.5 4.5 0 1 1 4.3-5.8 3 3 0 1 1 2.7 5.8z"></path>
+          </svg>
+          <span>Weather & Location</span>
+        </button>
+
+        <button type="button" class="nav-button" data-tab="effects">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="7.5"></circle>
+            <path d="m4.5 4.5 3.2 3.2M12.3 7.7l3.2-3.2M12.3 12.3l3.2 3.2M7.7 12.3l-3.2 3.2"></path>
+          </svg>
+          <span>Effects & Physics</span>
+        </button>
+
+        <button type="button" class="nav-button" data-tab="accumulation">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M15 3.5l-3.5 3.5M11.5 7l-7 7M4.5 14l-2 3.5 3.5-2M12.5 8l-2.5 2.5"></path>
+          </svg>
+          <span>Inactivity & Broom</span>
+        </button>
+
+        <button type="button" class="nav-button" data-tab="exclusions">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="10" cy="10" r="7.5"></circle>
+            <line x1="4.5" y1="4.5" x2="15.5" y2="15.5"></line>
+          </svg>
+          <span>Website Exclusions</span>
+        </button>
+
+        <button type="button" class="nav-button" data-tab="privacy">
+          <svg viewBox="0 0 20 20" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 17.5s6.5-3 6.5-8V4.5L10 2 3.5 4.5v5c0 5 6.5 8 6.5 8z"></path>
+          </svg>
+          <span>Privacy & Performance</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <button type="button" class="btn-restore" id="btn-reset-defaults">
+          <svg viewBox="0 0 16 16" width="13" height="13" fill="none" stroke="currentColor" stroke-width="1.6">
+            <path d="M2.5 8a5.5 5.5 0 1 0 1.6-3.9L2 6M2 2v4h4"></path>
+          </svg>
+          <span>Reset to Defaults</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content Pane -->
+    <main class="settings-content">
+      <!-- Section: General -->
+      <section class="pref-section active" id="section-general">
+        <header class="section-title-group">
+          <div class="title-with-status">
+            <div>
+              <h2 class="section-heading">General Settings</h2>
+              <p class="section-lead">Extension master state, active operational mode, and motion preferences.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pref-grid-2col">
+          <!-- Card 1: Master Controls -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 2v7M4.5 4.5a6.5 6.5 0 1 0 9 0"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Master Control</h3>
+                <p class="card-desc">Atmospheric engine state and primary mode</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Enable Leafly</span>
+                  <span class="pref-caption">Globally toggle nature and seasonal particles across tabs.</span>
+                </div>
+                <label class="botanical-switch">
+                  <input type="checkbox" id="gen-enabled">
+                  <span class="switch-rail"></span>
+                </label>
+              </div>
+
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Active Mode</span>
+                  <span class="pref-caption">Switch between live weather matching and offline manual choice.</span>
+                </div>
+                <select class="botanical-select" id="gen-mode">
+                  <option value="manual">Manual</option>
+                  <option value="auto">Automatic</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Accessibility & Movement -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="9" cy="9" r="6.5"></circle>
+                  <path d="M9 5v4l3 2"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Motion & Ergonomics</h3>
+                <p class="card-desc">System accessibility and visual pacing</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Respect OS Reduced Motion</span>
+                  <span class="pref-caption">Automatically reduces particle counts and speeds when operating system requests minimal movement.</span>
+                </div>
+                <label class="botanical-switch">
+                  <input type="checkbox" id="gen-reduced-motion">
+                  <span class="switch-rail"></span>
+                </label>
+              </div>
+
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Visual Identity</span>
+                  <span class="pref-caption">Refined warm beige palette inspired by autumn leaves and earthy botanical tones.</span>
+                </div>
+                <span class="botanical-tag">Botanical Warm Beige</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Weather & Location -->
+      <section class="pref-section" id="section-weather">
+        <header class="section-title-group">
+          <div class="title-with-status">
+            <div>
+              <h2 class="section-heading">Weather & Location</h2>
+              <p class="section-lead">Configure your region and background check intervals for real-world weather sync.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pref-grid-2col">
+          <!-- Card 1: Regional Lookup -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 16.5s5-4.5 5-9A5 5 0 0 0 4 7.5c0 4.5 5 9 5 9z"></path>
+                  <circle cx="9" cy="7.5" r="2"></circle>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Target Location</h3>
+                <p class="card-desc">Search cities via Open-Meteo geocoding without browser GPS</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row vertical">
+                <div class="pref-label-group">
+                  <span class="pref-title">Search Location</span>
+                  <span class="pref-caption">Type city name (e.g. Kyoto, Edinburgh, Vancouver).</span>
+                </div>
+                <div class="search-input-wrapper">
+                  <input type="text" class="botanical-input" id="location-query-input" placeholder="Enter city name...">
+                  <button type="button" class="botanical-btn primary" id="btn-search-location">Search</button>
+                </div>
+                <div class="location-results-pane" id="location-results-container" style="display: none;"></div>
+              </div>
+
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Active Region</span>
+                  <span class="pref-caption" id="current-location-text">London, United Kingdom</span>
+                </div>
+                <span class="botanical-tag mono" id="current-coords-text">51.5074, -0.1278</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Sync & Interval -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 9a7 7 0 1 1-2-4.9L16 6M16 2v4h-4"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Sync & Weather Cache</h3>
+                <p class="card-desc">Background polling cadence and cached observations</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Check Frequency</span>
+                  <span class="pref-caption">Conserves CPU, memory, and network resources.</span>
+                </div>
+                <select class="botanical-select" id="weather-interval-select">
+                  <option value="15">Every 15 minutes</option>
+                  <option value="30">Every 30 minutes (Standard)</option>
+                  <option value="60">Every 1 hour</option>
+                  <option value="120">Every 2 hours</option>
+                </select>
+              </div>
+
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Latest Weather Data</span>
+                  <span class="pref-caption" id="weather-cache-status">No data cached yet</span>
+                </div>
+                <button type="button" class="botanical-btn secondary" id="btn-force-weather-refresh">Refresh Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Effects & Physics -->
+      <section class="pref-section" id="section-effects">
+        <header class="section-title-group">
+          <div class="title-with-status">
+            <div>
+              <h2 class="section-heading">Effects & Physics Tuning</h2>
+              <p class="section-lead">Fine-tune particle density, fall velocities, wind dynamics, and visual presence.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pref-grid-2col">
+          <!-- Card 1: Particle Dynamics -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 15c4-1 8-5 10-12-7 2-11 6-12 10 1 1 2 2 2 2z"></path>
+                  <path d="M6 12l5-5"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Particle Appearance & Dynamics</h3>
+                <p class="card-desc">Theme selection, volume density, and falling speed</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Default Nature Effect</span>
+                  <span class="pref-caption">Particle system active during manual mode.</span>
+                </div>
+                <select class="botanical-select" id="eff-manual-type">
+                  <option value="autumn_leaves">Autumn Leaves</option>
+                  <option value="snow">Gentle Snowfall</option>
+                  <option value="rain">Gentle Rain</option>
+                  <option value="spring_petals">Cherry Blossom Petals</option>
+                  <option value="fireflies">Evening Fireflies</option>
+                  <option value="sunbeams">Atmospheric Sunbeams</option>
+                  <option value="bubbles">Drifting Bubbles</option>
+                  <option value="stars">Starlight Drift</option>
+                  <option value="confetti">Subtle Confetti</option>
+                </select>
+              </div>
+
+              <div class="pref-row vertical">
+                <div class="slider-meta">
+                  <span class="pref-title">Particle Density (Intensity)</span>
+                  <span class="slider-readout" id="val-eff-intensity">45</span>
+                </div>
+                <input type="range" class="botanical-range" id="eff-intensity" min="1" max="100">
+              </div>
+
+              <div class="pref-row vertical">
+                <div class="slider-meta">
+                  <span class="pref-title">Descent Speed</span>
+                  <span class="slider-readout" id="val-eff-speed">40</span>
+                </div>
+                <input type="range" class="botanical-range" id="eff-speed" min="1" max="100">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Environment & Atmospheric Forces -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2.5 6.5h8a2 2 0 1 0-2-2"></path>
+                  <path d="M2.5 10.5h11a2.5 2.5 0 1 0-2.5-2.5"></path>
+                  <path d="M2.5 14.5h6a1.5 1.5 0 1 0-1.5-1.5"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Environmental Forces & Scale</h3>
+                <p class="card-desc">Wind turbulence, drift orientation, scale, and opacity</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row vertical">
+                <div class="slider-meta">
+                  <span class="pref-title">Particle Scale</span>
+                  <span class="slider-readout" id="val-eff-size">50</span>
+                </div>
+                <input type="range" class="botanical-range" id="eff-size" min="10" max="100">
+              </div>
+
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Wind Direction</span>
+                  <span class="pref-caption">Natural drift orientation across viewport.</span>
+                </div>
+                <select class="botanical-select" id="eff-wind-direction">
+                  <option value="auto">Automatic (Dynamic Weather / Gusts)</option>
+                  <option value="left">Drift Left</option>
+                  <option value="right">Drift Right</option>
+                  <option value="none">No Wind (Vertical Only)</option>
+                </select>
+              </div>
+
+              <div class="pref-row vertical">
+                <div class="slider-meta">
+                  <span class="pref-title">Wind Strength</span>
+                  <span class="slider-readout" id="val-eff-wind">25</span>
+                </div>
+                <input type="range" class="botanical-range" id="eff-wind" min="0" max="100">
+              </div>
+
+              <div class="pref-row vertical">
+                <div class="slider-meta">
+                  <span class="pref-title">Visual Opacity</span>
+                  <span class="slider-readout" id="val-eff-opacity">85%</span>
+                </div>
+                <input type="range" class="botanical-range" id="eff-opacity" min="10" max="100">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Inactivity & Broom -->
+      <section class="pref-section" id="section-accumulation">
+        <header class="section-title-group">
+          <div class="title-with-status">
+            <div>
+              <h2 class="section-heading">Inactivity & The Broom</h2>
+              <p class="section-lead">Signature bottom floor heap accumulation and animated return sweeping.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pref-grid-2col">
+          <!-- Card 1: Floor Accumulation -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M2 15h14M4 12c2-2 4-2 6 0s4 2 6 0M3 9c2-1 4-1 6 0s4 1 6 0"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Bottom Heap Accumulation</h3>
+                <p class="card-desc">Particles settle into randomized clusters and mounds along the floor</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Bottom Accumulation</span>
+                  <span class="pref-caption">Leaves, petals, and snow pile up naturally over time.</span>
+                </div>
+                <label class="botanical-switch">
+                  <input type="checkbox" id="acc-enabled">
+                  <span class="switch-rail"></span>
+                </label>
+              </div>
+
+              <div class="pref-row vertical">
+                <div class="slider-meta">
+                  <span class="pref-title">Inactivity Threshold</span>
+                  <span class="slider-readout" id="val-acc-threshold">60 seconds</span>
+                </div>
+                <span class="pref-caption" style="margin-bottom: 8px;">Idle duration before accelerated settling begins.</span>
+                <input type="range" class="botanical-range" id="acc-threshold" min="10" max="300" step="5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 2: Animated Sweeping Broom -->
+          <div class="pref-card">
+            <div class="pref-card-header">
+              <div class="card-icon-pill">
+                <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14 2l-4 4M10.5 5.5l-6 6M4.5 11.5l-2 4 4-2M11 6.5l-2.5 2.5"></path>
+                </svg>
+              </div>
+              <div>
+                <h3 class="card-title">Animated Broom Sweeper</h3>
+                <p class="card-desc">Charming illustrated broom cleans accumulated mounds upon return</p>
+              </div>
+            </div>
+
+            <div class="pref-card-body">
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Automatic Broom Sweep</span>
+                  <span class="pref-caption">On return, the broom is available for autumn leaves, snow, rain, and cherry blossoms.</span>
+                </div>
+                <label class="botanical-switch">
+                  <input type="checkbox" id="acc-broom-enabled">
+                  <span class="switch-rail"></span>
+                </label>
+              </div>
+
+              <div class="pref-row">
+                <div class="pref-label-group">
+                  <span class="pref-title">Test Broom Sweep</span>
+                  <span class="pref-caption">Sweep open tabs using autumn leaves, snow, rain, or cherry blossoms.</span>
+                </div>
+                <button type="button" class="botanical-btn secondary" id="btn-test-sweep">Sweep Open Tabs</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Website Exclusions -->
+      <section class="pref-section" id="section-exclusions">
+        <header class="section-title-group">
+          <div class="title-with-status">
+            <div>
+              <h2 class="section-heading">Website Exclusions</h2>
+              <p class="section-lead">Manage websites where Leafly animations should be completely suppressed.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pref-card full-width">
+          <div class="pref-card-header">
+            <div class="card-icon-pill">
+              <svg viewBox="0 0 18 18" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="9" r="7"></circle>
+                <line x1="4" y1="4" x2="14" y2="14"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="card-title">Domain Blocklist</h3>
+              <p class="card-desc">Leafly is automatically suspended on specified domains and their subdomains</p>
+            </div>
+          </div>
+
+          <div class="pref-card-body">
+            <div class="pref-row vertical">
+              <div class="pref-label-group">
+                <span class="pref-title">Add Excluded Domain</span>
+                <span class="pref-caption">Enter hostnames without protocols (e.g. github.com, figma.com, notion.so).</span>
+              </div>
+              <div class="search-input-wrapper">
+                <input type="text" class="botanical-input" id="exclusion-input" placeholder="e.g. figma.com">
+                <button type="button" class="botanical-btn primary" id="btn-add-exclusion">Add Domain</button>
+              </div>
+            </div>
+
+            <div class="exclusion-table-frame">
+              <table class="exclusion-table">
+                <thead>
+                  <tr>
+                    <th>Domain</th>
+                    <th style="width: 90px; text-align: right;">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="exclusions-table-body"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section: Privacy & Performance -->
+      <section class="pref-section" id="section-privacy">
+        <header class="section-title-group">
+          <div class="title-with-status">
+            <div>
+              <h2 class="section-heading">Privacy & Performance</h2>
+              <p class="section-lead">How Leafly handles data and manages animation performance.</p>
+            </div>
+          </div>
+        </header>
+
+        <div class="pref-grid-2col">
+          <div class="pref-card"><div class="pref-card-header"><div><h3 class="card-title">Data stored on this device</h3></div></div>
+            <div class="pref-card-body manifesto-body"><p class="manifesto-desc">Preferences, excluded domains, the selected location and cached weather are stored in Chrome's local extension storage. Leafly does not use an account or Chrome sync. Removing the extension deletes its local extension data; resetting preferences restores settings but does not delete the location or weather cache.</p></div></div>
+          <div class="pref-card"><div class="pref-card-header"><div><h3 class="card-title">Weather and location requests</h3></div></div>
+            <div class="pref-card-body manifesto-body"><p class="manifesto-desc">City searches send the search text to Open-Meteo. Weather requests send the selected coordinates to Open-Meteo, including in automatic mode and when you refresh or select a location. The provider also receives normal connection information such as your IP address. Weather data is provided by <a href="https://open-meteo.com/" target="_blank" rel="noopener noreferrer">Open-Meteo</a> and adapted to Leafly effects (CC BY 4.0). See <a href="https://open-meteo.com/en/terms" target="_blank" rel="noopener noreferrer">Open-Meteo's terms</a> for its practices. The default location is London.</p></div></div>
+          <div class="pref-card"><div class="pref-card-header"><div><h3 class="card-title">Website access</h3></div></div>
+            <div class="pref-card-body manifesto-body"><p class="manifesto-desc">Leafly runs on accessible websites to draw effects and detect inactivity. It checks the current hostname against your exclusions. Leafly does not send page content, browsing history, or activity events to its developer, and includes no analytics or advertising code. Browser-restricted pages cannot display effects.</p></div></div>
+          <div class="pref-card"><div class="pref-card-header"><div><h3 class="card-title">Performance and controls</h3></div></div>
+            <div class="pref-card-body manifesto-body"><p class="manifesto-desc">Effects use canvas animation and a particle pool; browsers may throttle animation in hidden tabs. Lower intensity or disable Leafly to reduce resource use. Reduced motion can be respected in General settings, and individual sites can be excluded.</p></div></div>
+        </div>
+      </section>
+
+      <!-- Settings Page Single Footer -->
+      <footer class="settings-content-footer">
+        Crafted with <span class="heart-glyph">♥</span> by Innoartive Labs
+      </footer>
+    </main>
+  </div>
+
+  <div id="settings-toast" class="settings-toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="settings.js"></script>
+</body>
+</html>

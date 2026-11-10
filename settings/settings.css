@@ -1,0 +1,692 @@
+/**
+ * Leafly - Settings Interface Stylesheet
+ * Calm, botanical preferences layout inspired by natural materials,
+ * dual-column structure, polished slider physics, and refined typography.
+ */
+
+.settings-shell {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--leafly-bg-page, #E8DCC4);
+}
+
+/* =========================================================
+   SIDEBAR NAVIGATION
+   ========================================================= */
+.settings-sidebar {
+  width: 260px;
+  background-color: var(--leafly-bg-surface, #FAF6EE);
+  border-right: 1px solid var(--leafly-border-default, #D1C3A6);
+  display: flex;
+  flex-direction: column;
+  padding: 28px 18px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 10;
+  box-shadow: 1px 0 12px rgba(41, 63, 53, 0.04);
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+  padding: 0 6px;
+}
+
+.brand-glyph {
+  border-radius: var(--leafly-radius-sm, 8px);
+  display: block;
+  box-shadow: 0 2px 6px rgba(41, 63, 53, 0.12);
+  flex-shrink: 0;
+}
+
+.brand-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--leafly-text-primary, #292E2B);
+  line-height: 1.2;
+}
+
+.brand-version-tag {
+  font-size: 10.5px;
+  font-family: var(--leafly-font-mono, monospace);
+  font-weight: 600;
+  background-color: var(--leafly-accent-subtle, rgba(78, 92, 75, 0.1));
+  color: var(--leafly-accent-primary, #4E5C4B);
+  padding: 2px 6px;
+  border-radius: 4px;
+  letter-spacing: 0.02em;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.nav-button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  color: var(--leafly-text-secondary, #5C635E);
+  font-size: 13.5px;
+  font-weight: 500;
+  padding: 10px 14px;
+  border-radius: var(--leafly-radius-sm, 6px);
+  cursor: pointer;
+  text-align: left;
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+  outline: none;
+  position: relative;
+}
+
+.nav-button svg {
+  flex-shrink: 0;
+}
+
+.nav-button:hover {
+  background-color: var(--leafly-bg-surface-hover, #F0EAE1);
+  color: var(--leafly-text-primary, #292E2B);
+}
+
+.nav-button:focus-visible {
+  outline: 2px solid var(--leafly-border-focus, #4E5C4B);
+}
+
+.nav-button.active {
+  background-color: var(--leafly-accent-subtle, rgba(78, 92, 75, 0.1));
+  color: var(--leafly-accent-primary, #4E5C4B);
+  font-weight: 600;
+}
+
+.nav-button.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3.5px;
+  border-radius: 2px;
+  background-color: var(--leafly-accent-primary, #4E5C4B);
+}
+
+.sidebar-bottom {
+  padding-top: 18px;
+  border-top: 1px solid var(--leafly-border-subtle, #E0D7C5);
+}
+
+.btn-restore {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: transparent;
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+  color: var(--leafly-text-secondary, #5C635E);
+  padding: 9px 12px;
+  border-radius: var(--leafly-radius-sm, 6px);
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+}
+
+.btn-restore:hover {
+  background-color: var(--leafly-status-fail-bg, rgba(211, 47, 47, 0.08));
+  color: var(--leafly-status-fail, #D32F2F);
+  border-color: var(--leafly-status-fail, #D32F2F);
+}
+
+/* =========================================================
+   MAIN CONTENT PANE (EXPANDED 900-1040px)
+   ========================================================= */
+.settings-content {
+  flex: 1;
+  margin-left: 260px;
+  padding: 40px 56px 24px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pref-section {
+  display: none;
+  width: 100%;
+  max-width: 928px;
+}
+
+.pref-section.active {
+  display: block;
+  padding-bottom: 50px;
+  animation: leafly-fade-in 0.22s ease-out;
+}
+
+/* Persistent Header with Integrated Save Status */
+.section-title-group {
+  margin-bottom: 24px;
+}
+
+.title-with-status {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.section-heading {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--leafly-text-primary, #292E2B);
+  margin-bottom: 4px;
+  line-height: 1.2;
+}
+
+.section-lead {
+  font-size: 13.5px;
+  color: var(--leafly-text-secondary, #5C635E);
+  line-height: 1.4;
+}
+
+/* Embedded Header Save Status Indicator */
+.header-save-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+  flex-shrink: 0;
+  border: 1px solid transparent;
+}
+
+.header-save-indicator.status-idle {
+  background-color: var(--leafly-bg-surface, #FAF6EE);
+  border-color: var(--leafly-border-default, #D1C3A6);
+  color: var(--leafly-text-secondary, #5C635E);
+}
+
+.header-save-indicator.status-idle .save-indicator-icon {
+  color: var(--leafly-accent-primary, #4E5C4B);
+}
+
+.header-save-indicator.status-saving {
+  background-color: rgba(209, 166, 106, 0.15);
+  border-color: var(--leafly-warm-amber, #D1A66A);
+  color: #8C6228;
+}
+
+.header-save-indicator.status-success {
+  background-color: rgba(46, 125, 50, 0.12);
+  border-color: var(--leafly-status-success, #2E7D32);
+  color: var(--leafly-status-success, #2E7D32);
+}
+
+.header-save-indicator.status-error {
+  background-color: rgba(211, 47, 47, 0.12);
+  border-color: var(--leafly-status-error, #D32F2F);
+  color: var(--leafly-status-error, #D32F2F);
+}
+
+.header-save-indicator.status-warning {
+  background-color: rgba(237, 108, 2, 0.12);
+  border-color: var(--leafly-status-warning, #ED6C02);
+  color: var(--leafly-status-warning, #ED6C02);
+}
+
+.save-indicator-icon {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+/* =========================================================
+   TWO-COLUMN PREFERENCE GRID
+   ========================================================= */
+.pref-grid-2col {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+@media (max-width: 960px) {
+  .pref-grid-2col {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Bespoke Preference Cards */
+.pref-card {
+  background-color: var(--leafly-bg-surface, #FAF6EE);
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+  border-radius: var(--leafly-radius-md, 10px);
+  box-shadow: 0 2px 8px rgba(41, 63, 53, 0.05);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.pref-card.full-width {
+  grid-column: 1 / -1;
+}
+
+.pref-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background-color: rgba(232, 220, 196, 0.45);
+  border-bottom: 1px solid var(--leafly-border-default, #D1C3A6);
+}
+
+.card-icon-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--leafly-accent-primary, #4E5C4B);
+  color: var(--leafly-warm-beige, #E8DCC4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(41, 63, 53, 0.2);
+}
+
+.card-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--leafly-text-primary, #292E2B);
+  line-height: 1.25;
+}
+
+.card-desc {
+  font-size: 11.5px;
+  color: var(--leafly-text-secondary, #5C635E);
+  margin-top: 1px;
+}
+
+.pref-card-body {
+  padding: 4px 0;
+  flex: 1;
+}
+
+.pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--leafly-border-subtle, #E0D7C5);
+}
+
+.pref-row:last-child {
+  border-bottom: none;
+}
+
+.pref-row.vertical {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 8px;
+}
+
+.pref-label-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.pref-title {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--leafly-text-primary, #292E2B);
+}
+
+.pref-caption {
+  font-size: 12px;
+  color: var(--leafly-text-secondary, #5C635E);
+  line-height: 1.45;
+}
+
+/* =========================================================
+   POLISHED SLIDERS (ACTIVE TRACK, THUMB, VALUE BADGES)
+   ========================================================= */
+.slider-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+
+.slider-readout {
+  font-family: var(--leafly-font-mono, monospace);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--leafly-accent-primary, #4E5C4B);
+  background-color: rgba(232, 220, 196, 0.7);
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+  padding: 2px 8px;
+  border-radius: 12px;
+  line-height: 1.3;
+}
+
+.botanical-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  background: var(--leafly-border-default, #D1C3A6);
+  border-radius: 4px;
+  outline: none;
+  margin: 6px 0 2px;
+  cursor: pointer;
+  transition: background var(--leafly-transition-fast, 0.15s ease);
+}
+
+.botanical-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--leafly-accent-primary, #4E5C4B);
+  border: 2px solid var(--leafly-bg-surface, #FAF6EE);
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(41, 63, 53, 0.35);
+  transition: transform var(--leafly-transition-fast, 0.15s ease), box-shadow var(--leafly-transition-fast, 0.15s ease);
+}
+
+.botanical-range::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 5px rgba(78, 92, 75, 0.16), 0 2px 6px rgba(41, 63, 53, 0.3);
+}
+
+.botanical-range:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 7px rgba(78, 92, 75, 0.24), 0 2px 6px rgba(41, 63, 53, 0.35);
+}
+
+/* =========================================================
+   SWITCHES, SELECTS, INPUTS & BUTTONS
+   ========================================================= */
+.botanical-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 23px;
+  flex-shrink: 0;
+}
+
+.botanical-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch-rail {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--leafly-switch-track-off, #C7BFA8);
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+  border-radius: var(--leafly-radius-full, 9999px);
+}
+
+.switch-rail:before {
+  position: absolute;
+  content: "";
+  height: 17px;
+  width: 17px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--leafly-switch-thumb, #FFFFFF);
+  transition: transform var(--leafly-transition-smooth, 0.25s cubic-bezier(0.4, 0, 0.2, 1));
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+}
+
+input:checked + .switch-rail {
+  background-color: var(--leafly-accent-primary, #4E5C4B);
+}
+
+input:checked + .switch-rail:before {
+  transform: translateX(19px);
+}
+
+input:focus-visible + .switch-rail {
+  outline: 2px solid var(--leafly-border-focus, #4E5C4B);
+}
+
+.botanical-select {
+  background-color: #FAF6EE;
+  border: 1px solid #8C9A82;
+  color: var(--leafly-text-primary, #292E2B);
+  border-radius: var(--leafly-radius-sm, 6px);
+  padding: 8px 12px;
+  font-size: 13px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--leafly-transition-fast, 0.15s ease);
+  max-width: 220px;
+}
+
+.botanical-select:focus {
+  border-color: var(--leafly-border-focus, #4E5C4B);
+  box-shadow: 0 0 0 2px rgba(78, 92, 75, 0.12);
+}
+
+.search-input-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.botanical-input {
+  flex: 1;
+  background-color: #FAF6EE;
+  border: 1px solid #8C9A82;
+  border-radius: var(--leafly-radius-sm, 6px);
+  color: var(--leafly-text-primary, #292E2B);
+  padding: 8px 12px;
+  font-size: 13px;
+  outline: none;
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+}
+
+.botanical-input:focus {
+  border-color: var(--leafly-border-focus, #4E5C4B);
+  background-color: #FFFFFF;
+  box-shadow: 0 0 0 2px rgba(78, 92, 75, 0.12);
+}
+
+.botanical-btn {
+  padding: 8px 15px;
+  border-radius: var(--leafly-radius-sm, 6px);
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+  outline: none;
+  white-space: nowrap;
+}
+
+.botanical-btn.primary {
+  background-color: var(--leafly-accent-primary, #4E5C4B);
+  color: var(--leafly-warm-beige, #E8DCC4);
+  border: 1px solid transparent;
+}
+
+.botanical-btn.primary:hover {
+  background-color: var(--leafly-deep-evergreen, #293F35);
+}
+
+.botanical-btn.secondary {
+  background-color: rgba(232, 220, 196, 0.6);
+  color: var(--leafly-text-primary, #292E2B);
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+}
+
+.botanical-btn.secondary:hover {
+  background-color: var(--leafly-bg-surface-hover, #F0EAE1);
+  border-color: var(--leafly-accent-primary, #4E5C4B);
+}
+
+.botanical-tag {
+  font-size: 12px;
+  background-color: rgba(232, 220, 196, 0.6);
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+  padding: 4px 10px;
+  border-radius: var(--leafly-radius-sm, 6px);
+  color: var(--leafly-text-secondary, #5C635E);
+  font-weight: 500;
+}
+
+.botanical-tag.mono {
+  font-family: var(--leafly-font-mono, monospace);
+}
+
+/* =========================================================
+   LOCATION RESULTS PANE
+   ========================================================= */
+.location-results-pane {
+  background: #FAF6EE;
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+  border-radius: var(--leafly-radius-sm, 6px);
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.location-item {
+  padding: 9px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  border-bottom: 1px solid var(--leafly-border-subtle, #E0D7C5);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color var(--leafly-transition-fast, 0.15s ease);
+}
+
+.location-item:last-child {
+  border-bottom: none;
+}
+
+.location-item:hover {
+  background-color: var(--leafly-accent-subtle, rgba(78, 92, 75, 0.1));
+}
+
+/* =========================================================
+   EXCLUSIONS TABLE
+   ========================================================= */
+.exclusion-table-frame {
+  margin-top: 6px;
+  border: 1px solid var(--leafly-border-default, #D1C3A6);
+  border-radius: var(--leafly-radius-sm, 6px);
+  overflow: hidden;
+}
+
+.exclusion-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.exclusion-table th,
+.exclusion-table td {
+  padding: 11px 16px;
+  border-bottom: 1px solid var(--leafly-border-subtle, #E0D7C5);
+}
+
+.exclusion-table th {
+  background-color: rgba(232, 220, 196, 0.45);
+  color: var(--leafly-text-secondary, #5C635E);
+  font-size: 11px;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.btn-remove-site {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--leafly-status-fail, #D32F2F);
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: var(--leafly-radius-sm, 6px);
+  transition: all var(--leafly-transition-fast, 0.15s ease);
+}
+
+.btn-remove-site:hover {
+  background-color: var(--leafly-status-fail-bg, rgba(211, 47, 47, 0.08));
+  border-color: rgba(211, 47, 47, 0.2);
+}
+
+/* =========================================================
+   MANIFESTO BODY (PRIVACY)
+   ========================================================= */
+.manifesto-body {
+  padding: 16px 20px 20px;
+}
+
+.manifesto-desc {
+  font-size: 12.5px;
+  color: var(--leafly-text-secondary, #5C635E);
+  line-height: 1.5;
+}
+
+/* =========================================================
+   SINGLE POLISHED FOOTER
+   ========================================================= */
+.settings-content-footer {
+  margin-top: auto;
+  margin-left: -56px;
+  margin-right: -56px;
+  margin-bottom: -24px;
+  padding: 24px 56px;
+  position: relative;
+  border-top: 1px solid var(--leafly-border-default, #D1C3A6);
+  font-size: 12.5px;
+  color: var(--leafly-text-secondary, #5C635E);
+  text-align: center;
+  letter-spacing: -0.01em;
+}
+
+.settings-content-footer .heart-glyph {
+  color: var(--leafly-terracotta, #C57B57);
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 2px;
+}
+
+.settings-toast { position: fixed; right: 24px; bottom: 24px; z-index: 100; max-width: min(360px, calc(100vw - 48px)); padding: 12px 16px; border: 1px solid var(--leafly-border-default); border-radius: 8px; background: var(--leafly-bg-surface); color: var(--leafly-text-primary); box-shadow: 0 5px 22px rgba(41, 46, 43, .18); font-size: 13px; }
+.settings-toast[hidden] { display: none; }
+.settings-toast.status-error { border-color: #b73e38; }
+.location-coordinates { font-size: 11px; color: var(--leafly-text-secondary); font-family: var(--leafly-font-mono); }
+.location-empty { padding: 10px 14px; font-size: 12px; color: var(--leafly-text-secondary); }

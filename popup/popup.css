@@ -1,0 +1,435 @@
+/**
+ * Leafly - Popup Interface Stylesheet
+ * Compact botanical toolbar interface matching the Leafly design system.
+ */
+
+body {
+  width: 330px;
+  background-color: var(--leafly-bg-page);
+  color: var(--leafly-text-primary);
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  overflow: hidden;
+  font-family: var(--leafly-font-sans);
+}
+
+.popup-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+
+/* Header */
+.popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--leafly-radius-sm);
+  display: block;
+}
+
+.brand-name {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--leafly-text-primary);
+}
+
+/* Master Switch */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 38px;
+  height: 22px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: var(--leafly-switch-track-off);
+  transition: all var(--leafly-transition-fast);
+  border-radius: var(--leafly-radius-full);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 3px;
+  bottom: 3px;
+  background-color: var(--leafly-switch-thumb);
+  transition: transform var(--leafly-transition-smooth);
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+  background-color: var(--leafly-switch-track-on);
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px);
+}
+
+/* Live Preview Card */
+.preview-card {
+  position: relative;
+  width: 100%;
+  height: 94px;
+  background-color: var(--leafly-bg-card-subtle);
+  border: 1px solid var(--leafly-border-default);
+  border-radius: var(--leafly-radius-md);
+  overflow: hidden;
+  box-shadow: var(--leafly-shadow-sm);
+}
+
+#preview-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.preview-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 10px;
+  right: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+}
+
+.preview-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.preview-label {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--leafly-text-primary);
+  background: rgba(250, 246, 238, .92);
+  border-radius: 5px;
+  padding: 3px 7px;
+}
+
+/* Weather Information Card */
+.weather-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--leafly-bg-surface);
+  border: 1px solid var(--leafly-border-default);
+  border-radius: var(--leafly-radius-md);
+  padding: 8px 12px;
+  box-shadow: var(--leafly-shadow-sm);
+}
+
+.weather-main {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.weather-temp {
+  font-size: 17px;
+  font-weight: 700;
+  font-family: var(--leafly-font-mono);
+  color: var(--leafly-text-primary);
+}
+
+.weather-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-condition {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--leafly-text-primary);
+}
+
+.weather-location {
+  font-size: 11px;
+  color: var(--leafly-text-muted);
+}
+
+.icon-button {
+  background: transparent;
+  border: 1px solid var(--leafly-border-default);
+  color: var(--leafly-text-secondary);
+  border-radius: var(--leafly-radius-sm);
+  padding: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--leafly-transition-fast);
+}
+
+.icon-button:hover {
+  background-color: var(--leafly-bg-surface-hover);
+  color: var(--leafly-text-primary);
+  border-color: var(--leafly-accent-primary);
+}
+
+/* Mode Switcher Tabs */
+.mode-tabs {
+  display: flex;
+  background-color: var(--leafly-bg-card-subtle);
+  border: 1px solid var(--leafly-border-default);
+  border-radius: var(--leafly-radius-sm);
+  padding: 3px;
+  gap: 3px;
+}
+
+.mode-tab {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: var(--leafly-text-secondary);
+  padding: 5px 0;
+  font-size: 12px;
+  font-weight: 500;
+  border-radius: calc(var(--leafly-radius-sm) - 2px);
+  cursor: pointer;
+  transition: all var(--leafly-transition-fast);
+}
+
+.mode-tab:hover {
+  color: var(--leafly-text-primary);
+}
+
+.mode-tab.active {
+  background-color: var(--leafly-bg-surface);
+  color: var(--leafly-accent-primary);
+  font-weight: 600;
+  box-shadow: var(--leafly-shadow-sm);
+}
+
+/* Form Controls */
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.control-label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--leafly-text-muted);
+}
+
+.select-input {
+  width: 100%;
+  background-color: var(--leafly-bg-surface);
+  border: 1px solid #8C9A82;
+  border-radius: var(--leafly-radius-sm);
+  color: #233127;
+  padding: 8px 10px;
+  font-size: 12.5px;
+  outline: none;
+  cursor: pointer;
+  transition: border-color var(--leafly-transition-fast);
+}
+
+.select-input:focus {
+  border-color: var(--leafly-border-focus);
+  box-shadow: 0 0 0 3px rgba(78, 92, 75, .18);
+}
+
+/* Sliders Section */
+.sliders-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: var(--leafly-bg-surface);
+  border-radius: var(--leafly-radius-md);
+  padding: 10px 12px;
+  border: 1px solid var(--leafly-border-default);
+  box-shadow: var(--leafly-shadow-sm);
+}
+
+.slider-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11.5px;
+  color: var(--leafly-text-secondary);
+  font-weight: 500;
+}
+
+.slider-value {
+  font-family: var(--leafly-font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--leafly-accent-primary);
+}
+
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 5px;
+  background: var(--leafly-border-default, #D1C3A6);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--leafly-accent-primary, #4E5C4B);
+  border: 2px solid var(--leafly-bg-surface, #FAF6EE);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(41, 63, 53, 0.3);
+  transition: transform var(--leafly-transition-fast), box-shadow var(--leafly-transition-fast);
+}
+
+.range-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.18);
+  box-shadow: 0 0 0 4px rgba(78, 92, 75, 0.16);
+}
+
+/* Quick Toggles */
+.quick-toggles {
+  display: flex;
+  gap: 6px;
+}
+
+.toggle-pill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: var(--leafly-bg-surface);
+  border: 1px solid var(--leafly-border-default);
+  border-radius: var(--leafly-radius-sm);
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--leafly-text-secondary);
+  transition: all var(--leafly-transition-fast);
+}
+
+.toggle-pill:hover {
+  color: var(--leafly-text-primary);
+  background-color: var(--leafly-bg-surface-hover);
+}
+
+.toggle-pill input {
+  accent-color: var(--leafly-accent-primary);
+  cursor: pointer;
+}
+
+.action-pill {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  background-color: var(--leafly-bg-surface);
+  border: 1px solid var(--leafly-border-default);
+  border-radius: var(--leafly-radius-sm);
+  padding: 6px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--leafly-text-secondary);
+  transition: all var(--leafly-transition-fast);
+}
+
+.action-pill:hover {
+  background-color: var(--leafly-bg-surface-hover);
+  color: var(--leafly-text-primary);
+}
+
+.action-pill.active-warning {
+  border-color: var(--leafly-status-fail);
+  color: var(--leafly-status-fail);
+}
+
+/* Footer */
+.popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 8px;
+  border-top: 1px solid var(--leafly-border-subtle);
+}
+
+.footer-link-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--leafly-text-secondary);
+  font-size: 11.5px;
+  cursor: pointer;
+  padding: 4px 0;
+  transition: color var(--leafly-transition-fast);
+}
+
+.footer-link-btn:hover {
+  color: var(--leafly-accent-primary);
+}
+
+.popup-crafted-by {
+  text-align: center;
+  font-size: 11px;
+  color: var(--leafly-text-secondary);
+  padding: 4px 0 2px 0;
+  letter-spacing: -0.01em;
+}
+
+.popup-crafted-by .heart-glyph {
+  color: var(--leafly-accent-warm, #C57B57);
+  font-size: 12px;
+  margin: 0 1px;
+}
+
+.switch input:focus-visible + .slider, button:focus-visible, input:focus-visible { outline: 2px solid #4E5C4B; outline-offset: 2px; }
+
+.action-pill:disabled { opacity: .5; cursor: not-allowed; }

@@ -1,0 +1,123 @@
+/**
+ * Leafly - Botanical Design System & Token Architecture
+ * Single cohesive warm botanical palette:
+ * - Warm Beige: #E8DCC4 (Page background & toast background)
+ * - Deep Olive: #4E5C4B (Primary typography & accents)
+ * - Terracotta Clay: #C57B57 (Warm energy & interactive highlights)
+ * - Soft Sage Green: #A8BFA1 (Secondary calm & tints)
+ *
+ * Primary Status Colors:
+ * - Green (#2E7D32) for Success / Saved
+ * - Red (#D32F2F) for Error
+ * - Yellow / Amber (#ED6C02) for Warning
+ */
+
+:root,
+[data-theme],
+body {
+  /* Core Botanical Palette from User Specifications */
+  --leafly-warm-beige: #E8DCC4;
+  --leafly-deep-olive: #4E5C4B;
+  --leafly-terracotta: #C57B57;
+  --leafly-soft-sage: #A8BFA1;
+
+  /* Surfaces & Backgrounds */
+  --leafly-bg-page: #E8DCC4;
+  --leafly-bg-surface: #F3EBDD;
+  --leafly-bg-surface-hover: #ECE2D2;
+  --leafly-bg-card: #FAF6EE;
+  --leafly-bg-card-subtle: #F5EFE3;
+  --leafly-bg-input: #E2D5BD;
+  --leafly-bg-input-hover: #ECE2D2;
+
+  /* Borders */
+  --leafly-border-subtle: #DDD0B7;
+  --leafly-border-default: #D1C3A6;
+  --leafly-border-focus: #4E5C4B;
+
+  /* Typography */
+  --leafly-text-primary: #4E5C4B;
+  --leafly-text-secondary: #6B7A68;
+  --leafly-text-muted: #8C9A89;
+
+  /* Accents */
+  --leafly-accent-primary: #4E5C4B;
+  --leafly-accent-primary-hover: #3D483A;
+  --leafly-accent-subtle: rgba(78, 92, 75, 0.12);
+  --leafly-accent-warm: #C57B57;
+  --leafly-accent-warm-hover: #B26A47;
+  --leafly-accent-sage: #A8BFA1;
+
+  /* Primary Status Colors */
+  --leafly-status-success: #2E7D32;
+  --leafly-status-error: #D32F2F;
+  --leafly-status-warning: #ED6C02;
+
+  --leafly-status-pass: #2E7D32;
+  --leafly-status-pass-bg: rgba(46, 125, 50, 0.12);
+  --leafly-status-fail: #D32F2F;
+  --leafly-status-fail-bg: rgba(211, 47, 47, 0.12);
+  --leafly-status-skip: #8C9A89;
+  --leafly-status-skip-bg: rgba(140, 154, 137, 0.12);
+  --leafly-status-run: #ED6C02;
+  --leafly-status-run-bg: rgba(237, 108, 2, 0.12);
+
+  /* Form Controls */
+  --leafly-switch-track-off: #D1C3A6;
+  --leafly-switch-track-on: #4E5C4B;
+  --leafly-switch-thumb: #FAF6EE;
+
+  /* Shadows */
+  --leafly-shadow-sm: 0 1px 3px rgba(78, 92, 75, 0.08);
+  --leafly-shadow-md: 0 4px 12px -2px rgba(78, 92, 75, 0.12), 0 2px 4px -1px rgba(78, 92, 75, 0.06);
+
+  /* Radii & Typography */
+  --leafly-font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --leafly-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --leafly-radius-sm: 6px;
+  --leafly-radius-md: 10px;
+  --leafly-radius-lg: 14px;
+  --leafly-radius-full: 9999px;
+  --leafly-transition-fast: 0.15s ease;
+  --leafly-transition-smooth: 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--leafly-font-sans);
+  background-color: var(--leafly-bg-page);
+  color: var(--leafly-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Native select fallback keeps option text readable on all platforms. */
+select { accent-color: #4E5C4B; color: #292E2B; }
+select option { background-color: #FAF6EE; color: #292E2B; }
+
+/* Chrome's customizable picker gives selected and focused options consistent contrast. */
+@supports (appearance: base-select) {
+  select, select::picker(select) { appearance: base-select; }
+  select::picker(select) {
+    border: 1px solid #8C9A82;
+    border-radius: 8px;
+    background: #FAF6EE;
+    box-shadow: 0 8px 24px rgba(41, 46, 43, .2);
+    max-height: min(260px, 50vh);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    scrollbar-color: #71836C #E8E1D4;
+  }
+  select option { padding: 9px 12px; gap: 8px; }
+  select option:hover, select option:focus { background: #D8E3D1; color: #1E3021; }
+  select option:checked { background: #4E5C4B; color: #FFFFFF; font-weight: 600; }
+  select option::checkmark { color: currentColor; }
+  select::picker-icon { color: #4E5C4B; }
+}
