@@ -124,11 +124,11 @@
         p.x = randomRange(-40, width + 40);
         p.y = randomRange(-height * 0.25, -20);
         const sizeFactor = (settings.size || 50) / 50;
-        p.baseSize = randomRange(18, 32) * sizeFactor;
+        p.baseSize = randomRange(22, 38) * sizeFactor;
         p.size = p.baseSize;
 
         const speedFactor = (settings.speed || 40) / 40;
-        p.vy = randomRange(1.0, 2.2) * speedFactor;
+        p.vy = randomRange(1.2, 2.4) * speedFactor;
         p.vx = randomRange(-0.4, 0.4);
 
         p.swayPhase = randomRange(0, Math.PI * 2);
@@ -138,11 +138,11 @@
         p.rotation = randomRange(0, Math.PI * 2);
         p.vRot = randomRange(-0.02, 0.02);
 
-        p.flipAngle = randomRange(0, Math.PI);
-        p.flipSpeed = randomRange(0.015, 0.035);
+        p.flipAngle = randomRange(0, Math.PI * 2);
+        p.flipSpeed = randomRange(0.02, 0.05);
 
         p.opacity = (randomRange(0.75, 0.98) * (settings.opacity || 85)) / 100;
-        p.assetIndex = randomInt(0, 2);
+        p.assetIndex = randomInt(0, 3);
         p.settled = false;
       },
       updateParticle(p, dt, width, height, windX) {
@@ -276,15 +276,15 @@
         p.vy = randomRange(1.0, 2.0) * speedFactor;
         p.swayPhase = randomRange(0, Math.PI * 2);
         p.swaySpeed = randomRange(0.02, 0.04);
-        p.swayAmp = randomRange(1.4, 3.2);
+        p.swayAmp = randomRange(1.8, 3.5);
 
         p.rotation = randomRange(0, Math.PI * 2);
-        p.vRot = randomRange(-0.015, 0.015);
-        p.flipAngle = randomRange(0, Math.PI);
-        p.flipSpeed = randomRange(0.01, 0.03);
+        p.vRot = randomRange(-0.025, 0.025);
+        p.flipAngle = randomRange(0, Math.PI * 2);
+        p.flipSpeed = randomRange(0.03, 0.06);
 
         p.opacity = (randomRange(0.7, 0.95) * (settings.opacity || 85)) / 100;
-        p.assetIndex = randomInt(0, 2);
+        p.assetIndex = Math.random() < 0.85 ? randomInt(0, 1) : 2; // petals, with the occasional full blossom
         p.settled = false;
       },
       updateParticle(p, dt, width, height, windX) {
@@ -494,7 +494,7 @@
         p.flipSpeed = randomRange(0.03, 0.08);
 
         p.opacity = (randomRange(0.8, 0.98) * (settings.opacity || 85)) / 100;
-        p.assetIndex = randomInt(0, 2);
+        p.assetIndex = 'confetti';
         p.settled = false;
       },
       updateParticle(p, dt, width, height, windX) {
@@ -580,21 +580,43 @@
 
     loadAssetImages() {
       const getUrl = (p) => chrome.runtime.getURL(p);
+      // Same sprite set and keys as the popup preview engine (weather-effects.js ASSET_PATHS).
       const manifest = [
-        ['snow', 0, getUrl('assets/svg/snow/snowflake-crystal.svg')],
-        ['snow', 1, getUrl('assets/svg/snow/snowflake-star.svg')],
-        ['rain', 0, getUrl('assets/svg/rain/rain-drop.svg')],
-        ['rain', 1, getUrl('assets/svg/rain/rain-streak.svg')],
-        ['particles', 'firefly', getUrl('assets/svg/particles/firefly.svg')],
-        ['particles', 'bubble', getUrl('assets/svg/particles/bubble.svg')],
-        ['particles', 'star', getUrl('assets/svg/particles/star.svg')],
+        ['leaves', 0, 'assets/svg/leaves/maple-red.svg'],
+        ['leaves', 1, 'assets/svg/leaves/maple-orange.svg'],
+        ['leaves', 2, 'assets/svg/leaves/oak-golden.svg'],
+        ['leaves', 3, 'assets/svg/leaves/dry-brown.svg'],
+        ['snow', 0, 'assets/svg/snow/snowflake-crystal.svg'],
+        ['snow', 1, 'assets/svg/snow/snowflake-star.svg'],
+        ['snow', 2, 'assets/svg/snow/snow-dot.svg'],
+        ['rain', 0, 'assets/svg/rain/rain-drop.svg'],
+        ['rain', 1, 'assets/svg/rain/rain-streak.svg'],
+        ['petals', 0, 'assets/svg/petals/sakura-petal-1.svg'],
+        ['petals', 1, 'assets/svg/petals/sakura-petal-2.svg'],
+        ['petals', 2, 'assets/svg/petals/flower-blossom.svg'],
+        ['particles', 'firefly', 'assets/svg/particles/firefly.svg'],
+        ['particles', 'bubble', 'assets/svg/particles/bubble.svg'],
+        ['particles', 'star', 'assets/svg/particles/star.svg'],
+        ['particles', 'confetti', 'assets/svg/particles/confetti.svg'],
       ];
 
-      for (const [cat, id, url] of manifest) {
-        const img = new Image();
-        img.src = url;
+      for (const [cat, id, path] of manifest) {
         const key = `${cat}_${id}`;
-        img.onload = () => this.assets.set(key, img);
+        const url = getUrl(path);
+        const img = new Image();
+        img.onload = () => { if (img.naturalWidth > 0) this.assets.set(key, img); };
+        // Some sites' Content-Security-Policy block extension image URLs; retry from inline data.
+        img.onerror = () => {
+          fetch(url)
+            .then((r) => r.text())
+            .then((svg) => {
+              const alt = new Image();
+              alt.onload = () => { if (alt.naturalWidth > 0) this.assets.set(key, alt); };
+              alt.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+            })
+            .catch(() => {});
+        };
+        img.src = url;
       }
     }
 
